@@ -98,15 +98,7 @@ import java.net.SocketException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipFile;
 
@@ -2398,7 +2390,7 @@ public class CloudControllerClientImpl implements CloudControllerClient {
             int y = tokenString.indexOf('.', x + 1);
             String encodedString = tokenString.substring(x + 1, y);
             try {
-                byte[] decodedBytes = new sun.misc.BASE64Decoder().decodeBuffer(encodedString);
+                byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
                 userJson = new String(decodedBytes, 0, decodedBytes.length, "UTF-8");
             } catch (IOException e) {
             }
